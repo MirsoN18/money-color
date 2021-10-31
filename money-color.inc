@@ -7,22 +7,27 @@
 *
 * Thanks:
 *       SA:MP Team past, present and future - SA:MP.
+*	Y_Less - YSI.
 */
 
 // A_Samp include
 #include <a_samp>
+
+// Libraries
+#include <YSI\y_hooks>
 
 // Color of money bar
 #if !defined MONEY_BAR_COLOR
 	#define MONEY_BAR_COLOR 0x007AEDFF // blue
 #endif
 
-// Money bar textdraw
+// Variables
 static PlayerText:playerMoney[MAX_PLAYERS];
+static bool:moneyShowed[MAX_PLAYERS];
 
 // Callbacks
 
-public OnPlayerConnect(playerid)
+hook OnPlayerConnect(playerid)
 {
 	playerMoney[playerid] = CreatePlayerTextDraw(playerid, 498.999938, 77.617019, "$00000000");
 	PlayerTextDrawLetterSize(playerid, playerMoney[playerid], 0.548624, 2.083333);
@@ -37,24 +42,30 @@ public OnPlayerConnect(playerid)
 	return 1;
 }
 
-public OnPlayerSpawn(playerid)
+hook OnPlayerSpawn(playerid)
 {
-	PlayerTextDrawShow(playerid, playerMoney[playerid]);
+	if(!moneyShowed || GetPlayerMoney(playerid) >= 0)
+	{
+		PlayerTextDrawShow(playerid, playerMoney[playerid]);
+		moneyShowed = true;
+	}
 	return 1;
 }
 
-public OnPlayerUpdate(playerid)
+hook OnPlayerUpdate(playerid)
 {
-	new string[16];
+	new moneyString[16];
 	if(GetPlayerMoney(playerid) >= 0)
 	{
 		PlayerTextDrawShow(playerid, playerMoney[playerid]);
- 		format(string, sizeof(string), "$%08d", GetPlayerMoney(playerid));
- 		PlayerTextDrawSetString(playerid, playerMoney[playerid], string);
+ 		format(moneyString, sizeof(moneyString), "$%08d", GetPlayerMoney(playerid));
+ 		PlayerTextDrawSetString(playerid, playerMoney[playerid], moneyString);
+		moneyShowed = true;
 	}
 	else if(GetPlayerMoney(playerid) < 0 && GetPlayerMoney(playerid) > -100000000)
 	{
  		PlayerTextDrawHide(playerid, playerMoney[playerid]);
+		moneyShowed = hide;
 	}
 	return 1;
 }
