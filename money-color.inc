@@ -7,14 +7,10 @@
 *
 * Thanks:
 *       SA:MP Team past, present and future - SA:MP.
-*       Y_Less - YSI.
 */
 
 // A_Samp include
 #include <a_samp>
-
-// Libraries
-#include <YSI\y_hooks>
 
 // Color of money bar
 #if !defined MONEY_BAR_COLOR
@@ -26,7 +22,7 @@ static PlayerText:playerMoney[MAX_PLAYERS];
 
 // Callbacks
 
-hook OnPlayerConnect(playerid)
+public OnPlayerConnect(playerid)
 {
 	playerMoney[playerid] = CreatePlayerTextDraw(playerid, 498.999938, 77.617019, "$00000000");
 	PlayerTextDrawLetterSize(playerid, playerMoney[playerid], 0.548624, 2.083333);
@@ -41,13 +37,13 @@ hook OnPlayerConnect(playerid)
 	return 1;
 }
 
-hook OnPlayerSpawn(playerid)
+public OnPlayerSpawn(playerid)
 {
 	PlayerTextDrawShow(playerid, playerMoney[playerid]);
 	return 1;
 }
 
-hook OnPlayerUpdate(playerid)
+public OnPlayerUpdate(playerid)
 {
 	new string[16];
 	if(GetPlayerMoney(playerid) == 0)
