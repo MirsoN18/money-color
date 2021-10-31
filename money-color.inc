@@ -46,58 +46,10 @@ public OnPlayerSpawn(playerid)
 public OnPlayerUpdate(playerid)
 {
 	new string[16];
-	if(GetPlayerMoney(playerid) == 0)
+	if(GetPlayerMoney(playerid) >= 0)
 	{
-	    PlayerTextDrawShow(playerid, playerMoney[playerid]);
- 		format(string, sizeof(string), "$0000000%d", GetPlayerMoney(playerid));
- 		PlayerTextDrawSetString(playerid, playerMoney[playerid], string);
-	}
-	else if(GetPlayerMoney(playerid) > 0 && GetPlayerMoney(playerid) < 10)
-	{
-	    PlayerTextDrawShow(playerid, playerMoney[playerid]);
- 		format(string, sizeof(string), "$0000000%d", GetPlayerMoney(playerid));
- 		PlayerTextDrawSetString(playerid, playerMoney[playerid], string);
-	}
-	else if(GetPlayerMoney(playerid) >= 10 && GetPlayerMoney(playerid) < 100)
-	{
-	    PlayerTextDrawShow(playerid, playerMoney[playerid]);
- 		format(string, sizeof(string), "$000000%d", GetPlayerMoney(playerid));
- 		PlayerTextDrawSetString(playerid, playerMoney[playerid], string);
-	}
-	else if(GetPlayerMoney(playerid) >= 100 && GetPlayerMoney(playerid) < 1000)
-	{
-	    PlayerTextDrawShow(playerid, playerMoney[playerid]);
- 		format(string, sizeof(string), "$00000%d", GetPlayerMoney(playerid));
- 		PlayerTextDrawSetString(playerid, playerMoney[playerid], string);
-	}
-	else if(GetPlayerMoney(playerid) >= 1000 && GetPlayerMoney(playerid) < 10000)
-	{
-	    PlayerTextDrawShow(playerid, playerMoney[playerid]);
- 		format(string, sizeof(string), "$0000%d", GetPlayerMoney(playerid));
- 		PlayerTextDrawSetString(playerid, playerMoney[playerid], string);
-	}
-	else if(GetPlayerMoney(playerid) >= 10000 && GetPlayerMoney(playerid) < 100000)
-	{
-	    PlayerTextDrawShow(playerid, playerMoney[playerid]);
- 		format(string, sizeof(string), "$000%d", GetPlayerMoney(playerid));
- 		PlayerTextDrawSetString(playerid, playerMoney[playerid], string);
-	}
-	else if(GetPlayerMoney(playerid) >= 100000 && GetPlayerMoney(playerid) < 1000000)
-	{
-	    PlayerTextDrawShow(playerid, playerMoney[playerid]);
- 		format(string, sizeof(string), "$00%d", GetPlayerMoney(playerid));
- 		PlayerTextDrawSetString(playerid, playerMoney[playerid], string);
-	}
-	else if(GetPlayerMoney(playerid) >= 1000000 && GetPlayerMoney(playerid) < 10000000)
-	{
-	    PlayerTextDrawShow(playerid, playerMoney[playerid]);
- 		format(string, sizeof(string), "$0%d", GetPlayerMoney(playerid));
- 		PlayerTextDrawSetString(playerid, playerMoney[playerid], string);
-	}
-	else if(GetPlayerMoney(playerid) >= 10000000 && GetPlayerMoney(playerid) < 100000000)
-	{
-	    PlayerTextDrawShow(playerid, playerMoney[playerid]);
- 		format(string, sizeof(string), "$%d", GetPlayerMoney(playerid));
+		PlayerTextDrawShow(playerid, playerMoney[playerid]);
+ 		format(string, sizeof(string), "$%08d", GetPlayerMoney(playerid));
  		PlayerTextDrawSetString(playerid, playerMoney[playerid], string);
 	}
 	else if(GetPlayerMoney(playerid) < 0 && GetPlayerMoney(playerid) > -100000000)
