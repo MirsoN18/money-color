@@ -68,7 +68,7 @@ hook OnPlayerSpawn(playerid)
 
 hook OnPlayerDisconnect(playerid, reason)
 {
-	MoneyControl::Update(playerid);
+	MoneyControl::Hide(playerid);
 	return 1;
 }
 
