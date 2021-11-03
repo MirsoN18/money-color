@@ -14,6 +14,7 @@
 
 // | ----------------------- Includes ----------------------- |
 #include <a_samp>
+#include <YSI\y_hooks>
 
 // | ----------------------- Defines ----------------------- |
 #if !defined MONEY_BAR_COLOR
